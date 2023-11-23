@@ -3,21 +3,22 @@ import { FaSpinner } from "react-icons/fa";
 import { SiTodoist } from "react-icons/si";
 import AddTodo from "../Pages/Home/Components/AddTodo";
 import CardItem from "./CardItem";
-import { useState } from "react";
+import { useContext } from "react";
+import { taskContext } from "../Provider/TaskProvider";
 const Card = ({ Tasks }) => {
-	const [checkedIds, setCheckedIds] = useState([]);
+	const { selectedData, setSelectedData } = useContext(taskContext);
 
 	const handleCheck = (taskId, isChecked) => {
 		if (isChecked) {
-			setCheckedIds([...checkedIds, taskId]);
+			setSelectedData([...selectedData, taskId]);
 		} else {
-			setCheckedIds(checkedIds.filter((id) => id !== taskId));
+			setSelectedData(selectedData.filter((id) => id !== taskId));
 		}
-		console.log("checkbox-->", checkedIds);
+		console.log("checkbox-->", selectedData);
 	};
 	return (
-		<div className="grid  pt-10 gap-2 grid-cols-1 md:grid-cols-3 xl:grid-cols-3 text-white bg-sky-400 shadow-inner-lg ">
-			<div className="card w-96  shadow-xl bg-blue-600  min-h-screen ">
+		<div className="grid  pt-10 gap-2 grid-cols-1 md:grid-cols-3 xl:grid-cols-3 text-white bg-indigo-300 shadow-inner-lg ">
+			<div className="card w-96  shadow-xl bg-sky-400  min-h-screen ">
 				<button className="btn btn-sm glass text-white">
 					<SiTodoist className="text-xl  text-white" />
 					Todo
@@ -29,7 +30,7 @@ const Card = ({ Tasks }) => {
 					<CardItem key={task._id} task={task} onCheck={handleCheck} />
 				))}
 			</div>
-			<div className="card w-96 shadow-xl bg-sky-500">
+			<div className="card w-96 shadow-xl bg-cyan-400">
 				<button className="btn btn-sm glass text-primary">
 					<FaSpinner className="text-2xl text-white" />
 					Pogress
@@ -38,7 +39,7 @@ const Card = ({ Tasks }) => {
 					<CardItem key={task._id} task={task} onCheck={handleCheck} />
 				))}
 			</div>
-			<div className="card w-96  bg-sky-700 shadow-xl">
+			<div className="card w-96  bg-green-400 shadow-xl">
 				<button className="btn btn-sm glass text-info">
 					<IoCheckmarkDoneCircleOutline className="text-2xl text-white" />
 					Done

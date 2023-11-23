@@ -5,7 +5,7 @@ import Card from "./Components/card";
 
 const App = () => {
 	const Tasks = useLoaderData();
-	console.log("tasks--->", Tasks);
+
 	return (
 		<div>
 			<Hero />

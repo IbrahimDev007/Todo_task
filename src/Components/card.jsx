@@ -3,8 +3,18 @@ import { FaSpinner } from "react-icons/fa";
 import { SiTodoist } from "react-icons/si";
 import AddTodo from "../Pages/Home/Components/AddTodo";
 import CardItem from "./CardItem";
+import { useState } from "react";
 const Card = ({ Tasks }) => {
-	console.log(Tasks);
+	const [checkedIds, setCheckedIds] = useState([]);
+
+	const handleCheck = (taskId, isChecked) => {
+		if (isChecked) {
+			setCheckedIds([...checkedIds, taskId]);
+		} else {
+			setCheckedIds(checkedIds.filter((id) => id !== taskId));
+		}
+		console.log("checkbox-->", checkedIds);
+	};
 	return (
 		<div className="grid  pt-10 gap-2 grid-cols-1 md:grid-cols-3 xl:grid-cols-3 text-white bg-sky-400 shadow-inner-lg ">
 			<div className="card w-96  shadow-xl bg-blue-600  min-h-screen ">
@@ -16,7 +26,7 @@ const Card = ({ Tasks }) => {
 				<div className="divider   divider-primary"></div>
 
 				{Tasks.map((task) => (
-					<CardItem key={task._id} task={task} />
+					<CardItem key={task._id} task={task} onCheck={handleCheck} />
 				))}
 			</div>
 			<div className="card w-96 shadow-xl bg-sky-500">
@@ -25,7 +35,7 @@ const Card = ({ Tasks }) => {
 					Pogress
 				</button>
 				{Tasks.map((task) => (
-					<CardItem key={task._id} task={task} />
+					<CardItem key={task._id} task={task} onCheck={handleCheck} />
 				))}
 			</div>
 			<div className="card w-96  bg-sky-700 shadow-xl">
@@ -34,7 +44,7 @@ const Card = ({ Tasks }) => {
 					Done
 				</button>
 				{Tasks.map((task) => (
-					<CardItem key={task._id} task={task} />
+					<CardItem key={task._id} task={task} onCheck={handleCheck} />
 				))}
 			</div>
 		</div>

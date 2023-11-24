@@ -11,7 +11,7 @@ const AddTodo = () => {
 
 	const onSubmit = async (data) => {
 		data.status = "todo";
-		console.log(data);
+
 		try {
 			const response = await axiosSecure.post("/task", data);
 

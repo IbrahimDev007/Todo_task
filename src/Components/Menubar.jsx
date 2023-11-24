@@ -7,23 +7,26 @@ import useDataContext from "../Hooks/useDataContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useInterceptor from "../Hooks/useInterceptor";
+import axios from "axios";
 
 const Menubar = () => {
 	const { selectedData } = useDataContext();
-	const [task, , refetch] = useTaskDataHook();
+	// console.log(selectedData);
+	const [task, refetch] = useTaskDataHook();
 	const navigate = useNavigate();
 	const Todo = task.filter((task) => task.status === "todo");
 	const [axiosSecure] = useInterceptor();
 	const handleDelete = async () => {
+		console.log(selectedData);
 		try {
-			const response = await axiosSecure.delete(`/delete`, {
-				selectedData,
+			const response = await axios.delete(`http://localhost:3000/delete`, {
+				data: { selectedData },
 			});
 			refetch();
 			Swal.fire({
 				position: "top-end",
 				icon: "success",
-				title: `you move succesfully`,
+				title: `you delete succesfully`,
 				showConfirmButton: false,
 				timer: 1500,
 			});
@@ -84,7 +87,7 @@ const Menubar = () => {
 				</li>
 				<li>
 					<button onClick={() => handleDelete()}>
-						Move To done
+						Delete
 						<BsTrash className="mx-1 text-xl bold text-error" />
 					</button>
 				</li>

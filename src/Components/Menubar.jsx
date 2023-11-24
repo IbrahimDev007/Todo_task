@@ -7,7 +7,6 @@ import useDataContext from "../Hooks/useDataContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useInterceptor from "../Hooks/useInterceptor";
-import axios from "axios";
 
 const Menubar = () => {
 	const { selectedData } = useDataContext();
@@ -19,7 +18,7 @@ const Menubar = () => {
 	const handleDelete = async () => {
 		console.log(selectedData);
 		try {
-			const response = await axios.delete(`http://localhost:3000/delete`, {
+			const response = await axiosSecure.delete(`/delete`, {
 				data: { selectedData },
 			});
 			refetch();

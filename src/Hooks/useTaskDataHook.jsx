@@ -8,7 +8,6 @@ const useTaskDataHook = () => {
 		refetch,
 	} = useQuery({
 		queryKey: ["task"],
-		// enabled: !loading,
 		queryFn: async () => {
 			if (!isLoading) {
 				const res = await axiosSecure.get("/");

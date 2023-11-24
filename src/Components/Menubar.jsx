@@ -1,5 +1,7 @@
 import { FcTodoList } from "react-icons/fc";
 import { ImSpinner9 } from "react-icons/im";
+import { BsTrash } from "react-icons/bs";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
 import useTaskDataHook from "../Hooks/useTaskDataHook";
 import useDataContext from "../Hooks/useDataContext";
 import Swal from "sweetalert2";
@@ -14,7 +16,7 @@ const Menubar = () => {
 	const [axiosSecure] = useInterceptor();
 	const handleDelete = async () => {
 		try {
-			const response = await axiosSecure.patch(`/delete`, {
+			const response = await axiosSecure.delete(`/delete`, {
 				selectedData,
 			});
 			refetch();
@@ -76,14 +78,14 @@ const Menubar = () => {
 				</li>
 				<li>
 					<button onClick={() => navigate("/dashboard")}>
-						Move To done
-						<span className="badge badge-xs badge-info"></span>
+						Dashboard
+						<MdOutlineSpaceDashboard className="mx-1 text-xl bold text-info" />
 					</button>
 				</li>
 				<li>
 					<button onClick={() => handleDelete()}>
 						Move To done
-						<span className="badge badge-xs badge-info"></span>
+						<BsTrash className="mx-1 text-xl bold text-error" />
 					</button>
 				</li>
 			</ul>

@@ -1,16 +1,39 @@
 import { FcTodoList } from "react-icons/fc";
 import { ImSpinner9 } from "react-icons/im";
-import axios from "axios";
 import useTaskDataHook from "../Hooks/useTaskDataHook";
 import useDataContext from "../Hooks/useDataContext";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import useInterceptor from "../Hooks/useInterceptor";
 
 const Menubar = () => {
 	const { selectedData } = useDataContext();
-	const [, refetch] = useTaskDataHook();
+	const [task, , refetch] = useTaskDataHook();
+	const navigate = useNavigate();
+	const Todo = task.filter((task) => task.status === "todo");
+	const [axiosSecure] = useInterceptor();
+	const handleDelete = async () => {
+		try {
+			const response = await axiosSecure.patch(`/delete`, {
+				selectedData,
+			});
+			refetch();
+			Swal.fire({
+				position: "top-end",
+				icon: "success",
+				title: `you move succesfully`,
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			console.log(" request successful:", response.data);
+		} catch (error) {
+			console.error("Error making post request:", error);
+		}
+	};
+
 	const handleclick = async (todo) => {
 		try {
-			const response = await axios.patch(`http://localhost:3000/move/${todo}`, {
+			const response = await axiosSecure.patch(`/move/${todo}`, {
 				selectedData,
 			});
 			refetch();
@@ -34,7 +57,7 @@ const Menubar = () => {
 					<button onClick={() => handleclick("todo")}>
 						<FcTodoList className="mx-1" />
 						Move to Todo
-						<span className="badge badge-sm">99+</span>
+						<span className="badge badge-sm">{Todo.length}</span>
 					</button>
 				</li>
 				<li>
@@ -47,6 +70,18 @@ const Menubar = () => {
 				</li>
 				<li>
 					<button onClick={() => handleclick("done")}>
+						Move To done
+						<span className="badge badge-xs badge-info"></span>
+					</button>
+				</li>
+				<li>
+					<button onClick={() => navigate("/dashboard")}>
+						Move To done
+						<span className="badge badge-xs badge-info"></span>
+					</button>
+				</li>
+				<li>
+					<button onClick={() => handleDelete()}>
 						Move To done
 						<span className="badge badge-xs badge-info"></span>
 					</button>

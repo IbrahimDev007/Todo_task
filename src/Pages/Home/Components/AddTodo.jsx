@@ -1,18 +1,19 @@
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import { SiTodoist } from "react-icons/si";
 import useTaskDataHook from "../../../Hooks/useTaskDataHook";
 import Swal from "sweetalert2";
+import useInterceptor from "../../../Hooks/useInterceptor";
 
 const AddTodo = () => {
 	const { register, handleSubmit, reset } = useForm();
 	const [, refetch] = useTaskDataHook();
+	const [axiosSecure] = useInterceptor();
 
 	const onSubmit = async (data) => {
 		data.status = "todo";
 		console.log(data);
 		try {
-			const response = await axios.post("http://localhost:3000/task", data);
+			const response = await axiosSecure.post("/task", data);
 
 			Swal.fire({
 				position: "top-end",

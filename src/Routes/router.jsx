@@ -7,9 +7,14 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <App />,
 		errorElement: <Error />,
-		// loader: async () => {
-		// 	return fetch("http://localhost:3000/");
-		// },
+	},
+	{
+		path: "/dashboard",
+		element: <div>this is dashboard</div>,
+		errorElement: <Error />,
+		loader: async () => {
+			return fetch("http://localhost:3000/");
+		},
 	},
 ]);
 export default router;

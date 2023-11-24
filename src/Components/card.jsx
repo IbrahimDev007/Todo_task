@@ -3,7 +3,7 @@ import { FaSpinner } from "react-icons/fa";
 import { SiTodoist } from "react-icons/si";
 import AddTodo from "../Pages/Home/Components/AddTodo";
 import CardItem from "./CardItem";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { taskContext } from "../Provider/TaskProvider";
 const Card = ({ Tasks }) => {
 	// const [checkedIds, setCheckedIds] = useState([]);

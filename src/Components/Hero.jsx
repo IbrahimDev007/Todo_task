@@ -1,7 +1,8 @@
 const Hero = () => {
 	return (
 		<div
-			className="hero min-h-[200px]"
+			className="hero min-h-[200px]  sticky top-0
+			"
 			style={{
 				backgroundImage: 'url("/Todo.jpeg")',
 			}}

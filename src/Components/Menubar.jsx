@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Menubar = () => {
 	const { selectedData } = useContext(taskContext);
-	// const [moveTodo, setMoveTodo] = useState([]);
+
 	console.log(selectedData);
 	const handleclick = async (todo) => {
 		try {
@@ -20,7 +20,7 @@ const Menubar = () => {
 	};
 
 	return (
-		<div className="flex justify-center items-center">
+		<div className="flex justify-center items-center sticky top-0 z-20">
 			<ul className="menu bg-base-200 lg:menu-horizontal rounded-box ">
 				<li>
 					<button onClick={() => handleclick("todo")}>

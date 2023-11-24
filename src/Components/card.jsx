@@ -5,7 +5,7 @@ import AddTodo from "../Pages/Home/Components/AddTodo";
 import CardItem from "./CardItem";
 import { useContext } from "react";
 import { taskContext } from "../Provider/TaskProvider";
-const Card = ({ Tasks }) => {
+const Card = () => {
 	// const [checkedIds, setCheckedIds] = useState([]);
 	const { selectedData, setSelectedData } = useContext(taskContext);
 

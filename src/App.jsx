@@ -1,16 +1,18 @@
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
 import Hero from "./Components/Hero";
 import Menubar from "./Components/Menubar";
 import Card from "./Components/card";
 
 const App = () => {
-	const Tasks = useLoaderData();
+	//when use react roter dom
+	// const Tasks = useLoaderData();
 
 	return (
 		<div>
 			<Hero />
 			<Menubar />
-			<Card Tasks={Tasks} />
+			{/* when use reac router dom  */}
+			<Card />
 		</div>
 	);
 };

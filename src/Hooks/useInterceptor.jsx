@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 const useInterceptor = () => {
 	const axiosSecure = axios.create({
-		baseURL: "http:localhost:3000",
+		baseURL: "https://todo-backend-navy-kappa.vercel.app",
 	});
 	const navigate = useNavigate();
 	useEffect(() => {
-		axiosSecure.interceptors.request.use((request) => {
-			console.log("Starting Request", request);
-			return request;
+		axiosSecure.interceptors.request.use((config) => {
+			return config;
 		});
 		axiosSecure.interceptors.response.use(
 			(response) => {

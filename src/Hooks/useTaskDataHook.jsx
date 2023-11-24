@@ -3,18 +3,20 @@ import useInterceptor from "./useInterceptor";
 const useTaskDataHook = () => {
 	const [axiosSecure] = useInterceptor();
 	const {
-		data: task,
+		data: task = [],
 		isLoading,
 		refetch,
 	} = useQuery({
 		queryKey: ["task"],
-		enabled: !isLoading,
+		// enabled: !loading,
 		queryFn: async () => {
-			const res = await axiosSecure.get(`/`);
-			console.log(res.data);
-			return res.data;
+			if (!isLoading) {
+				const res = await axiosSecure.get("/");
+				console.log("data-->", res.data); //check data
+				return res.data;
+			}
 		},
 	});
-	return [task, isLoading, refetch];
+	return [task, refetch, isLoading];
 };
 export default useTaskDataHook;

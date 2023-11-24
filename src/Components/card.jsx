@@ -3,11 +3,13 @@ import { FaSpinner } from "react-icons/fa";
 import { SiTodoist } from "react-icons/si";
 import AddTodo from "../Pages/Home/Components/AddTodo";
 import CardItem from "./CardItem";
-import { useContext } from "react";
-import { taskContext } from "../Provider/TaskProvider";
+import useTaskDataHook from "../Hooks/useTaskDataHook";
+import useDataContext from "../Hooks/useDataContext";
 const Card = () => {
 	// const [checkedIds, setCheckedIds] = useState([]);
-	const { selectedData, setSelectedData } = useContext(taskContext);
+	const { selectedData, setSelectedData } = useDataContext();
+	const [task, , isLoading] = useTaskDataHook();
+	const Tasks = task || [];
 
 	const handleCheck = (taskId, isChecked) => {
 		if (isChecked) {
@@ -19,7 +21,13 @@ const Card = () => {
 	const Todo = Tasks.filter((task) => task.status === "todo");
 	const Pogress = Tasks.filter((task) => task.status === "pogress");
 	const Complete = Tasks.filter((task) => task.status === "done");
-	// console.log(selectedData);
+	if (isLoading) {
+		return (
+			<div className="flex justify-center">
+				<span className="loading loading-infinity loading-lg "></span>
+			</div>
+		);
+	}
 	return (
 		<div className="grid  pt-10 gap-2 grid-cols-1 md:grid-cols-3 xl:grid-cols-3 text-white bg-indigo-300 shadow-inner-lg ">
 			<div className="card w-96  shadow-xl bg-sky-400  min-h-screen ">

@@ -1,17 +1,25 @@
 import { FcTodoList } from "react-icons/fc";
 import { ImSpinner9 } from "react-icons/im";
-import { taskContext } from "../Provider/TaskProvider";
-import { useContext } from "react";
 import axios from "axios";
+import useTaskDataHook from "../Hooks/useTaskDataHook";
+import useDataContext from "../Hooks/useDataContext";
+import Swal from "sweetalert2";
 
 const Menubar = () => {
-	const { selectedData } = useContext(taskContext);
-
-	console.log(selectedData);
+	const { selectedData } = useDataContext();
+	const [, refetch] = useTaskDataHook();
 	const handleclick = async (todo) => {
 		try {
 			const response = await axios.patch(`http://localhost:3000/move/${todo}`, {
 				selectedData,
+			});
+			refetch();
+			Swal.fire({
+				position: "top-end",
+				icon: "success",
+				title: `you move succesfully`,
+				showConfirmButton: false,
+				timer: 1500,
 			});
 			console.log(" request successful:", response.data);
 		} catch (error) {

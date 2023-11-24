@@ -1,16 +1,28 @@
 import axios from "axios";
 import { useForm } from "react-hook-form";
 import { SiTodoist } from "react-icons/si";
+import useTaskDataHook from "../../../Hooks/useTaskDataHook";
+import Swal from "sweetalert2";
 
 const AddTodo = () => {
 	const { register, handleSubmit, reset } = useForm();
+	const [, refetch] = useTaskDataHook();
+
 	const onSubmit = async (data) => {
-		// const taskData = (data.status = "todo");
 		data.status = "todo";
 		console.log(data);
 		try {
 			const response = await axios.post("http://localhost:3000/task", data);
+
+			Swal.fire({
+				position: "top-end",
+				icon: "success",
+				title: "Your task has been added",
+				showConfirmButton: false,
+				timer: 1500,
+			});
 			reset();
+			refetch();
 			console.log("Post request successful:", response.data);
 		} catch (error) {
 			console.error("Error making post request:", error);

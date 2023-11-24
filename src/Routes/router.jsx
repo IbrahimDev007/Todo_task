@@ -7,9 +7,9 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <App />,
 		errorElement: <Error />,
-		loader: async () => {
-			return fetch("http://localhost:3000/");
-		},
+		// loader: async () => {
+		// 	return fetch("http://localhost:3000/");
+		// },
 	},
 ]);
 export default router;

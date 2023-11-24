@@ -7,19 +7,17 @@ import axios from "axios";
 const Menubar = () => {
 	const { selectedData } = useContext(taskContext);
 	// const [moveTodo, setMoveTodo] = useState([]);
-
+	console.log(selectedData);
 	const handleclick = async (todo) => {
 		try {
-			const response = await axios.post(
-				`http://localhost:3000/${todo}`,
-				selectedData
-			);
+			const response = await axios.patch(`http://localhost:3000/move/${todo}`, {
+				selectedData,
+			});
 			console.log(" request successful:", response.data);
 		} catch (error) {
 			console.error("Error making post request:", error);
 		}
 	};
-	g;
 
 	return (
 		<div className="flex justify-center items-center">

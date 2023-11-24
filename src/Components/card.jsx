@@ -3,9 +3,10 @@ import { FaSpinner } from "react-icons/fa";
 import { SiTodoist } from "react-icons/si";
 import AddTodo from "../Pages/Home/Components/AddTodo";
 import CardItem from "./CardItem";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { taskContext } from "../Provider/TaskProvider";
 const Card = ({ Tasks }) => {
+	// const [checkedIds, setCheckedIds] = useState([]);
 	const { selectedData, setSelectedData } = useContext(taskContext);
 
 	const handleCheck = (taskId, isChecked) => {
@@ -14,8 +15,11 @@ const Card = ({ Tasks }) => {
 		} else {
 			setSelectedData(selectedData.filter((id) => id !== taskId));
 		}
-		console.log("checkbox-->", selectedData);
 	};
+	const Todo = Tasks.filter((task) => task.status === "todo");
+	const Pogress = Tasks.filter((task) => task.status === "pogress");
+	const Complete = Tasks.filter((task) => task.status === "done");
+	// console.log(selectedData);
 	return (
 		<div className="grid  pt-10 gap-2 grid-cols-1 md:grid-cols-3 xl:grid-cols-3 text-white bg-indigo-300 shadow-inner-lg ">
 			<div className="card w-96  shadow-xl bg-sky-400  min-h-screen ">
@@ -26,7 +30,7 @@ const Card = ({ Tasks }) => {
 				<AddTodo />
 				<div className="divider   divider-primary"></div>
 
-				{Tasks.map((task) => (
+				{Todo.map((task) => (
 					<CardItem key={task._id} task={task} onCheck={handleCheck} />
 				))}
 			</div>
@@ -35,7 +39,7 @@ const Card = ({ Tasks }) => {
 					<FaSpinner className="text-2xl text-white" />
 					Pogress
 				</button>
-				{Tasks.map((task) => (
+				{Pogress.map((task) => (
 					<CardItem key={task._id} task={task} onCheck={handleCheck} />
 				))}
 			</div>
@@ -44,7 +48,7 @@ const Card = ({ Tasks }) => {
 					<IoCheckmarkDoneCircleOutline className="text-2xl text-white" />
 					Done
 				</button>
-				{Tasks.map((task) => (
+				{Complete.map((task) => (
 					<CardItem key={task._id} task={task} onCheck={handleCheck} />
 				))}
 			</div>

@@ -36,6 +36,17 @@ const Menubar = () => {
 	};
 
 	const handleclick = async (todo) => {
+		if (selectedData === undefined || null || []) {
+			Swal.fire({
+				position: "top-end",
+				icon: "error",
+				title: `nothing select`,
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			return;
+		}
+
 		try {
 			const response = await axiosSecure.patch(`/move/${todo}`, {
 				selectedData,
@@ -81,7 +92,7 @@ const Menubar = () => {
 				<li>
 					<button onClick={() => navigate("/dashboard")}>
 						Dashboard
-						<MdOutlineSpaceDashboard className="mx-1 text-xl bold text-info" />
+						<MdOutlineSpaceDashboard className="mx-1 text-xl bold text-success" />
 					</button>
 				</li>
 				<li>

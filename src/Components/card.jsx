@@ -57,7 +57,7 @@ const Card = () => {
 					Done
 				</button>
 				{Complete.map((task) => (
-					<CardItem key={task._id} task={task} onCheck={handleCheck} />
+					<CardItem key={task._id} task={task} complete="done" />
 				))}
 			</div>
 		</div>

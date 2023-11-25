@@ -4,10 +4,13 @@ export const taskContext = createContext(null);
 
 const TaskProvider = ({ children }) => {
 	const [selectedData, setSelectedData] = useState([]);
+	const [pogress, setPogress] = useState();
 
 	const dataInfo = {
 		selectedData,
 		setSelectedData,
+		pogress,
+		setPogress,
 	};
 
 	return (

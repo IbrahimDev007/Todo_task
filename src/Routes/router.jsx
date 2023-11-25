@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Error from "../Pages/Error";
+import Dashboard from "../Pages/Dashboard/Dashboard";
 
 const router = createBrowserRouter([
 	{
@@ -10,7 +11,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: "/dashboard",
-		element: <div>this is dashboard</div>,
+		element: <Dashboard />,
 		errorElement: <Error />,
 		loader: async () => {
 			return fetch("http://localhost:3000/");

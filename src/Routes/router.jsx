@@ -14,7 +14,7 @@ const router = createBrowserRouter([
 		element: <Dashboard />,
 		errorElement: <Error />,
 		loader: async () => {
-			return fetch("http://localhost:3000/");
+			return fetch("https://todo-backend-navy-kappa.vercel.app/");
 		},
 	},
 ]);

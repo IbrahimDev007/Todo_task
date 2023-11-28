@@ -7,6 +7,7 @@ import useDataContext from "../Hooks/useDataContext";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useInterceptor from "../Hooks/useInterceptor";
+import LoginComp from "../Pages/Home/Components/Login";
 
 const Menubar = () => {
 	const { selectedData } = useDataContext();
@@ -66,8 +67,8 @@ const Menubar = () => {
 	};
 
 	return (
-		<div className="flex justify-center items-center sticky top-0 z-20">
-			<ul className="menu bg-base-200 lg:menu-horizontal rounded-box ">
+		<div className="flex justify-center items-center sticky top-0 z-20 ">
+			<ul className="menu bg-base-200 glass menu-horizontal rounded-box flex flex-initial ">
 				<li>
 					<button onClick={() => handleclick("todo")}>
 						<FcTodoList className="mx-1" />
@@ -100,6 +101,10 @@ const Menubar = () => {
 						Delete
 						<BsTrash className="mx-1 text-xl bold text-error" />
 					</button>
+				</li>
+
+				<li>
+					<LoginComp />
 				</li>
 			</ul>
 		</div>

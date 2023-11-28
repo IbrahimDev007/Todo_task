@@ -29,7 +29,7 @@ const Card = () => {
 		);
 	}
 	return (
-		<div className="grid  pt-10 gap-2 grid-cols-1 md:grid-cols-3 xl:grid-cols-3 text-white bg-indigo-300 shadow-inner-lg ">
+		<div className="grid  pt-10 grid-cols-1 gap-4 justify-items-center md:grid-cols-2 xl:grid-cols-3 text-white bg-indigo-300 shadow-inner-lg ">
 			<div className="card w-96  shadow-xl bg-sky-400  min-h-screen ">
 				<button className="btn btn-sm glass text-white">
 					<SiTodoist className="text-xl  text-white" />

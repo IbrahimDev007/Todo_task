@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import Piechart from "./Chart/PieChart";
 import useTaskDataHook from "../../Hooks/useTaskDataHook";
+import { PieChart } from "recharts";
 
 const Dashboard = () => {
 	const navigate = useNavigate();
@@ -19,12 +19,12 @@ const Dashboard = () => {
 					"url(https://img.freepik.com/free-photo/digital-tablet-online-learning_53876-97299.jpg?size=626&ext=jpg)",
 			}}
 		>
-			<div className="hero-overlay bg-opacity-60"></div>
-			<div className="hero-content text-center text-neutral-content">
+			<div className="hero-overlay   bg-opacity-60"></div>
+			<div className="hero-content  text-center text-neutral-content">
 				<div className="max-w-full mx-auto">
-					<div className="card shrink-0 w-full h-96 shadow-2xl bg-base-100">
-						<div className="stats shadow">
-							<div className="stat flex items-start justify-center flex-col text-start">
+					<div className="card  w-full h-96 shadow-2xl bg-base-100">
+						<div className="stats shadow flex flex-wrap">
+							<div className="stat flex  items-center justify-items-center flex-col text-start">
 								<div className="stat-title">Total Tasks</div>
 								<div className="stat-value text-primary ">
 									{task.length} Task
@@ -58,7 +58,7 @@ const Dashboard = () => {
 								</div>
 							</div>
 
-							<div className="stat  flex items-start justify-center flex-col">
+							<div className="stat  flex  text-start items-center justify-items-center flex-col">
 								<div className="stat-title">Pogress Tasks</div>
 								<div className="stat-value text-secondary ">
 									{Pogress.length} Tasks
@@ -97,7 +97,7 @@ const Dashboard = () => {
                             "
 							>
 								<div className="flex items-center  justify-items-center">
-									<Piechart todo={todo} Pogress={Pogress} complete={Complete} />
+									<PieChart todo={todo} Pogress={Pogress} complete={Complete} />
 									<div>
 										<div className="stat-figure text-secondary">
 											<div className="avatar online">

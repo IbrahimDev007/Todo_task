@@ -1,5 +1,3 @@
-import LoginComp from "../Pages/Home/Components/Login";
-
 const Hero = () => {
 	return (
 		<div
@@ -9,9 +7,6 @@ const Hero = () => {
 				backgroundImage: 'url("/Todo.jpeg")',
 			}}
 		>
-			<div className="fixed top-0 right-0 ">
-				<LoginComp />
-			</div>
 			<div className="hero-overlay bg-opacity-30"></div>
 			<div className="hero-content text-center text-neutral-content">
 				<div className="max-w-md">

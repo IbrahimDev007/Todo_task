@@ -25,8 +25,8 @@ const Dashboard = () => {
 			<div className="hero-overlay   bg-opacity-60"></div>
 			<div className="hero-content  text-center text-neutral-content">
 				<div className="max-w-full mx-auto">
-					<div className="card  w-full h-96 shadow-2xl bg-base-100">
-						<div className="stats shadow flex flex-wrap">
+					<div className="card  w-full h-fit shadow-2xl bg-base-100">
+						<div className="stats shadow flex   flex-wrap">
 							<div className="stat flex  items-center justify-items-center flex-col text-start">
 								<div className="stat-title">Total Tasks</div>
 								<div className="stat-value text-primary ">
@@ -96,7 +96,7 @@ const Dashboard = () => {
 							</div>
 
 							<div
-								className="stat flex items-start justify-center 
+								className="stat flex items-start flex-row justify-center 
                             "
 							>
 								<div className="flex items-center  justify-items-center">

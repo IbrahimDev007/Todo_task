@@ -8,10 +8,11 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useInterceptor from "../Hooks/useInterceptor";
 import LoginComp from "../Pages/Home/Components/Login";
+import useAuthcontext from "../Hooks/useAuthcontext";
 
 const Menubar = () => {
 	const { selectedData } = useDataContext();
-	// console.log(selectedData);
+	const { user } = useAuthcontext();
 	const [task, refetch] = useTaskDataHook();
 	const navigate = useNavigate();
 	const Todo = task.filter((task) => task.status === "todo");
@@ -90,12 +91,14 @@ const Menubar = () => {
 						<span className="badge badge-xs badge-info"></span>
 					</button>
 				</li>
-				<li>
-					<button onClick={() => navigate("/dashboard")}>
-						Dashboard
-						<MdOutlineSpaceDashboard className="mx-1 text-xl bold text-success" />
-					</button>
-				</li>
+				{user && (
+					<li>
+						<button onClick={() => navigate("/dashboard")}>
+							Dashboard
+							<MdOutlineSpaceDashboard className="mx-1 text-xl bold text-success" />
+						</button>
+					</li>
+				)}
 				<li>
 					<button onClick={() => handleDelete()}>
 						Delete

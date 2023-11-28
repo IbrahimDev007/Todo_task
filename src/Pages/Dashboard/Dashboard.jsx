@@ -1,16 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import useTaskDataHook from "../../Hooks/useTaskDataHook";
-import { PieChart } from "recharts";
+import useAuthcontext from "../../Hooks/useAuthcontext";
+import Pie_Chart from "./Chart/PieChart";
 
 const Dashboard = () => {
 	const navigate = useNavigate();
 	const [task] = useTaskDataHook();
+	const { user } = useAuthcontext();
 	const workload = 100 - (task.length / 7) * 100; //here 7 uses as workload stable standard
 	const Pogress = task.filter((task) => task.status === "pogress");
 	const todo = task.filter((task) => task.status === "todo");
 	const Complete = task.filter((task) => task.status === "done");
 	const pogressPrct =
 		100 - (Pogress.length / (task.length + Complete.length)) * 100;
+	console.log(pogressPrct, "--------------------------------", Pogress);
 	return (
 		<div
 			className="hero min-h-screen"
@@ -97,12 +100,17 @@ const Dashboard = () => {
                             "
 							>
 								<div className="flex items-center  justify-items-center">
-									<PieChart todo={todo} Pogress={Pogress} complete={Complete} />
+									<Pie_Chart
+										todo={todo.length}
+										pogress={Pogress.length}
+										complete={Complete.length}
+									/>
+
 									<div>
 										<div className="stat-figure text-secondary">
 											<div className="avatar online">
 												<div className="w-16 rounded-full">
-													<img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+													<img src={user?.photoURL} />
 												</div>
 											</div>
 										</div>

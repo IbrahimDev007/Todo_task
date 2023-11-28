@@ -11,14 +11,14 @@ const LoginComp = () => {
 	return (
 		<>
 			{user ? (
-				<div className="dropdown">
+				<div className="dropdown m-0 p-0">
 					<div
 						tabIndex={0}
 						role="button"
-						className="btn btn-circle btn-outline"
+						className="btn btn-circle btn-outline btn-sm mx-2"
 					>
 						<div className="avatar">
-							<div className="w-24 mask mask-hexagon">
+							<div className=" mask mask-hexagon">
 								<img src={user?.photoURL} />
 							</div>
 						</div>

@@ -13,7 +13,6 @@ const Dashboard = () => {
 	const Complete = task.filter((task) => task.status === "done");
 	const pogressPrct =
 		100 - (Pogress.length / (task.length + Complete.length)) * 100;
-	console.log(pogressPrct, "--------------------------------", Pogress);
 	return (
 		<div
 			className="hero min-h-screen"
